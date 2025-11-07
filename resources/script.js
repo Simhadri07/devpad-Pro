@@ -18,7 +18,7 @@ function getGreeting(name) {
 let quotes = [];
 async function loadQuotes() {
   try {
-    const res = await fetch('quotes.json');
+    const res = await fetch('resources/quotes.json');
     if (!res.ok) throw new Error('No quotes.json found');
     quotes = await res.json();
   } catch {
