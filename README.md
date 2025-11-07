@@ -17,7 +17,7 @@
 - QA automation reminders  
 - DevOps tips & tricks  
 
-**🔗 Live Demo:** [DevPad Pro on GitHub Pages](https://Simhadri07.github.io/DevPad-Pro/)
+**🔗 Live Demo:** [DevPad Pro on GitHub Pages](https://simhadri07.github.io/devpad-Pro/)
 
 ---
 
@@ -26,7 +26,7 @@
 You can use DevPad Pro directly via GitHub Pages or run locally:
 
 ### **Option 1: Live Demo**
-Simply open the [GitHub Pages link](https://Simhadri07.github.io/DevPad-Pro/) in your browser.
+Simply open the [GitHub Pages link](https://simhadri07.github.io/devpad-Pro/) in your browser.
 
 ### **Option 2: Run Locally**
 1. Clone the repository:
