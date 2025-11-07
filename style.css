@@ -1,0 +1,152 @@
+/* 🌈 macOS / Notion hybrid aesthetic */
+:root {
+  --bg-light: linear-gradient(145deg, #f8fafc, #e8edf5);
+  --bg-dark: linear-gradient(145deg, #0f1117, #1b1d24);
+  --glass-light: rgba(255,255,255,0.6);
+  --glass-dark: rgba(25,25,30,0.55);
+  --border-light: rgba(0,0,0,0.1);
+  --border-dark: rgba(255,255,255,0.1);
+  --accent: #007aff;
+  --accent-hover: #005ed6;
+  --font-sans: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --text-light: #1b1c1f;
+  --text-dark: #e8ebf0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  transition: background 0.4s, color 0.4s;
+}
+
+/* App Container */
+.app {
+  max-width: 880px;
+  margin: 60px auto;
+  background: var(--glass-dark);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-dark);
+  border-radius: 18px;
+  padding: 28px 36px 40px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  transition: background 0.4s, border 0.4s;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  font-weight: 600;
+  font-size: 1.5em;
+  letter-spacing: -0.3px;
+}
+
+/* Controls */
+.controls {
+  position: fixed;
+  top: 22px;
+  right: 30px;
+  display: flex;
+  gap: 8px;
+  background: rgba(25,25,30,0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 6px 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+button:hover { background: var(--accent-hover); transform: translateY(-1px); }
+button:active { transform: scale(0.96); }
+
+/* Greeting and Motivation */
+#greeting {
+  font-size: 1.25em;
+  font-weight: 500;
+  margin-top: 8px;
+}
+#motivation {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  font-size: 1em;
+  background-color: rgba(255,255,255,0.15);
+  backdrop-filter: blur(5px);
+  transition: all 0.4s ease;
+}
+
+/* Text Area */
+textarea {
+  width: 100%;
+  height: 60vh;
+  border: none;
+  outline: none;
+  margin-top: 18px;
+  font-size: 15px;
+  font-family: var(--font-mono);
+  padding: 16px;
+  border-radius: 10px;
+  background-color: rgba(30,30,36,0.5);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+  resize: vertical;
+  color: inherit;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+
+.info {
+  font-size: 0.85em;
+  text-align: right;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 0.85em;
+  text-align: center;
+  opacity: 0.6;
+}
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Animation */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(5px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Dark mode */
+body.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+body.light .app { background: var(--glass-light); border-color: var(--border-light); }
+body.light textarea { background-color: rgba(255,255,255,0.65); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); }
