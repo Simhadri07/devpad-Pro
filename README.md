@@ -84,6 +84,4 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 ---
 
-**Enjoy coding with DevPad Pro!** 🚀
-
-```
+**Enjoy with DevPad Pro!** 🚀
