@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DevPad Pro</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="resources/style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="container">
+    <div class="theme-toggle">
+      <button class="theme-btn" id="light"><span>💡</span></button>
+      <button class="theme-btn" id="dark"><span>🌙</span></button>
+      <button class="theme-btn" id="auto"><span>✨</span></button>
+    </div>
 
-  <!-- Floating Controls -->
-  <div class="controls">
-    <button id="nextQuoteBtn" title="Next Motivation">💡</button>
-    <button id="toggleThemeBtn" title="Toggle Theme">🌗</button>
-    <button id="clearNotesBtn" title="Clear Notes">🧹</button>
+    <div class="card">
+      <h1 class="title">DevPad Pro</h1>
+      <p class="greeting" id="greeting"></p>
+      <blockquote class="quote">“Simplicity is the soul of efficiency.”</blockquote>
+      <textarea
+        class="note-box"
+        placeholder="Start typing your thoughts, notes, or code snippets here..."
+      ></textarea>
+    </div>
   </div>
 
-  <!-- App -->
-  <div class="app">
-    <header>
-      <h1>DevPad Pro</h1>
-    </header>
+  <script>
+    // Greeting with name and time-based message
+    const greetingEl = document.getElementById("greeting");
+    const name = "Simhadri";
+    const hour = new Date().getHours();
+    let timeOfDay;
 
-    <div id="greeting"></div>
-    <div id="motivation" class="fade-in"></div>
+    if (hour < 12) timeOfDay = "Good Morning";
+    else if (hour < 18) timeOfDay = "Good Afternoon";
+    else timeOfDay = "Good Evening";
 
-    <textarea id="notes" placeholder="Start typing your thoughts, notes, or code snippets here..."></textarea>
+    greetingEl.textContent = `${timeOfDay}, ${name} 🌞`;
 
-    <div class="info">💾 Auto-saved locally — no cloud, 100% private.</div>
-
-    <footer>
-      <p>Made with ❤️ by <a href="https://github.com/Simhadri07/devpad-Pro" target="_blank">Simhadri07</a></p>
-    </footer>
-  </div>
-
-  <!-- Scripts -->
-  <script src="resources/script.js"></script>
+    // Theme toggle logic
+    const body = document.body;
+    document.getElementById("light").onclick = () => body.setAttribute("data-theme", "light");
+    document.getElementById("dark").onclick = () => body.setAttribute("data-theme", "dark");
+    document.getElementById("auto").onclick = () => body.removeAttribute("data-theme");
+  </script>
 </body>
 </html>
