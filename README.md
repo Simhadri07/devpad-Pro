@@ -80,4 +80,4 @@ To set your name in the app:
 
 ## 📜 License
 
-MIT License © 2025 Simhadri Chatla
+This project is licensed under the [MIT License](./LICENSE) © 2025 Simhadri
