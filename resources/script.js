@@ -1,65 +1,65 @@
-const notesEl = document.getElementById('notes');
-const motivationEl = document.getElementById('motivation');
-const greetingEl = document.getElementById('greeting');
+// DevPad Pro — Script.js
+const notesArea = document.getElementById('notes');
+const motivationDiv = document.getElementById('motivation');
+const greetingDiv = document.getElementById('greeting');
 
-// Restore notes
-notesEl.value = localStorage.getItem('myNotes') || '';
-notesEl.addEventListener('input', () => localStorage.setItem('myNotes', notesEl.value));
+const quotes = [
+  "Code is like humor. When you have to explain it, it’s bad.",
+  "Simplicity is the soul of efficiency.",
+  "Dream big, code bigger!",
+  "One commit at a time — progress!",
+  "Every bug is just an opportunity to learn.",
+  "Keep coding. Keep growing."
+];
 
-// Greeting
-function getGreeting(name) {
-  const h = new Date().getHours();
-  if (h < 12) return `🌅 Good morning, ${name}! Time to make something awesome.`;
-  else if (h < 18) return `☀️ Afternoon grind, ${name}! Keep shipping greatness.`;
-  else return `🌙 Good evening, ${name}!`;
+// Load saved notes
+notesArea.value = localStorage.getItem('devpad-notes') || '';
+
+// Auto-save notes
+notesArea.addEventListener('input', () => {
+  localStorage.setItem('devpad-notes', notesArea.value);
+});
+
+// Greeting message
+function updateGreeting() {
+  const hour = new Date().getHours();
+  let message = "Hey, Developer 👋";
+  if (hour < 12) message = "Good Morning ☀️";
+  else if (hour < 18) message = "Good Afternoon 🌤️";
+  else message = "Good Evening 🌙";
+  greetingDiv.textContent = message;
 }
 
-// Load Quotes
-let quotes = [];
-async function loadQuotes() {
-  try {
-    const res = await fetch('resources/quotes.json');
-    if (!res.ok) throw new Error('No quotes.json found');
-    quotes = await res.json();
-  } catch {
-    quotes = [
-      "Write code that makes your future self proud. 💻",
-      "Real devs ship before they sleep. 🚀",
-      "Log once, learn forever. 📜",
-      "You are one refactor away from brilliance. ✨",
-      "Push positivity with your commits. 🌈"
-    ];
-  }
-  showRandomQuote();
-}
-
-// Show random quote
+// Motivation
 function showRandomQuote() {
-  if (!quotes.length) return;
-  const q = quotes[Math.floor(Math.random() * quotes.length)];
-  motivationEl.textContent = q;
-  motivationEl.classList.remove('fade-in');
-  void motivationEl.offsetWidth;
-  motivationEl.classList.add('fade-in');
+  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+  motivationDiv.textContent = `"${quote}"`;
+  motivationDiv.classList.add('fade-in');
+  setTimeout(() => motivationDiv.classList.remove('fade-in'), 600);
 }
 
-// Buttons
-document.getElementById('nextQuoteBtn').addEventListener('click', showRandomQuote);
+// Clear notes
+document.getElementById('clearNotesBtn').addEventListener('click', () => {
+  if (confirm('Clear all notes?')) {
+    notesArea.value = '';
+    localStorage.removeItem('devpad-notes');
+  }
+});
+
+// Toggle theme
 document.getElementById('toggleThemeBtn').addEventListener('click', () => {
   document.body.classList.toggle('light');
   localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
 });
-document.getElementById('clearNotesBtn').addEventListener('click', () => {
-  if (confirm('Clear all your notes?')) {
-    localStorage.removeItem('myNotes');
-    notesEl.value = '';
-  }
-});
 
-// Remember theme, default dark
-if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+// Restore theme
+if (localStorage.getItem('theme') === 'light') {
+  document.body.classList.add('light');
+}
 
-// Init
-const name = "Simhadri"; // <- Update your name here!
-greetingEl.textContent = getGreeting(name);
-loadQuotes();
+// Show random quote
+document.getElementById('nextQuoteBtn').addEventListener('click', showRandomQuote);
+
+// Initial load
+updateGreeting();
+showRandomQuote();
