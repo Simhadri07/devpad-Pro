@@ -1,113 +1,120 @@
-/* 🌈 macOS + Notion Hybrid with Enhanced Light/Dark Colors */
+/* 🌈 DevPad Pro — macOS / Notion Aesthetic with Adaptive Design */
 :root {
-  /* 🎨 Base colors */
-  --bg-light: linear-gradient(145deg, #f9fafc, #e8edf5);
-  --bg-dark: linear-gradient(145deg, #0d1016, #1c1f27);
-  --glass-light: rgba(255, 255, 255, 0.65);
-  --glass-dark: rgba(25, 25, 30, 0.55);
+  /* Gradients */
+  --bg-light: linear-gradient(145deg, #fdfdfd, #e7edf6);
+  --bg-dark: linear-gradient(145deg, #0d0f15, #1b1d25);
+
+  /* Glass surfaces */
+  --glass-light: rgba(255, 255, 255, 0.7);
+  --glass-dark: rgba(30, 30, 35, 0.65);
+
+  /* Borders */
   --border-light: rgba(0, 0, 0, 0.08);
   --border-dark: rgba(255, 255, 255, 0.08);
 
-  /* 🟦 Accent colors */
+  /* Accent & highlight colors */
   --accent: #007aff;
-  --accent-hover: #0062d1;
-  --accent-glow: rgba(0, 122, 255, 0.3);
+  --accent-hover: #0064e0;
+  --accent-glow: rgba(0, 122, 255, 0.35);
 
-  /* ✍️ Typography */
+  /* Text */
+  --text-light: #121317;
+  --text-dark: #e8ebf0;
+  --text-muted-light: #4a4c54;
+  --text-muted-dark: #b3b6bf;
+
+  /* Fonts */
   --font-sans: 'Inter', 'SF Pro Display', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-
-  /* 🕶 Text */
-  --text-light: #1c1d20;
-  --text-dark: #e8ebf0;
-
-  /* 💫 Support colors */
-  --note-light: rgba(255, 255, 255, 0.75);
-  --note-dark: rgba(255, 255, 255, 0.1);
-  --highlight-light: rgba(0, 0, 0, 0.05);
-  --highlight-dark: rgba(255, 255, 255, 0.07);
 }
 
-/* 🧠 Global */
+/* 🌙 Base styles */
 body {
   margin: 0;
   font-family: var(--font-sans);
   background: var(--bg-dark);
   color: var(--text-dark);
-  transition: background 0.4s, color 0.4s;
-  -webkit-tap-highlight-color: transparent;
-  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding: 0 16px;
 }
 
-/* 🌐 App Container */
+/* 🪟 App Container */
 .app {
-  width: 95%;
-  max-width: 880px;
-  margin: 80px auto 40px;
+  max-width: 920px;
+  margin: 80px auto 60px;
   background: var(--glass-dark);
-  backdrop-filter: blur(18px) saturate(140%);
   border: 1px solid var(--border-dark);
-  border-radius: 18px;
-  padding: 30px 36px 42px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
-  transition: background 0.4s, border 0.4s, box-shadow 0.3s;
+  border-radius: 22px;
+  backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  padding: 36px 44px 50px;
+  transition: all 0.4s ease;
 }
 
-/* 🔠 Header */
+/* 📱 Responsive layout */
+@media (max-width: 768px) {
+  .app {
+    margin: 40px 0;
+    padding: 24px 20px 32px;
+    border-radius: 16px;
+  }
+}
+
+/* 🧭 Header */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
+
 header h1 {
   font-weight: 600;
-  font-size: 1.7em;
+  font-size: clamp(1.3em, 2vw, 1.6em);
   letter-spacing: -0.3px;
-  user-select: none;
-  background: linear-gradient(90deg, var(--accent), #4ec8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent-glow);
 }
 
-/* 🕹 Controls */
+/* 🎛️ Control buttons */
 .controls {
   position: fixed;
-  top: 16px;
-  right: 22px;
+  top: 18px;
+  right: 24px;
   display: flex;
-  gap: 8px;
-  background: rgba(25, 25, 30, 0.4);
-  backdrop-filter: blur(10px) saturate(150%);
-  border-radius: 20px;
-  padding: 6px 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  gap: 10px;
+  background: rgba(25, 25, 30, 0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 6px 12px;
   z-index: 10;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-.controls button {
+button {
   border: none;
-  border-radius: 10px;
-  padding: 8px 10px;
+  border-radius: 8px;
+  padding: 6px 10px;
   background: var(--accent);
   color: #fff;
-  font-size: 0.95em;
+  font-size: 0.9em;
   cursor: pointer;
-  transition: background 0.25s, transform 0.15s, box-shadow 0.3s;
-  min-width: 40px;
-  min-height: 40px;
-  box-shadow: 0 0 10px var(--accent-glow);
+  transition: background 0.3s, transform 0.15s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
-
-.controls button:hover {
+button:hover {
   background: var(--accent-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px var(--accent-glow);
 }
-.controls button:active {
+button:active {
   transform: scale(0.96);
-  box-shadow: 0 0 4px var(--accent-glow);
 }
 
 /* 💬 Greeting & Motivation */
@@ -115,16 +122,23 @@ header h1 {
   font-size: 1.25em;
   font-weight: 500;
   margin-top: 8px;
+  color: var(--text-dark);
 }
+
 #motivation {
-  margin-top: 12px;
+  margin-top: 14px;
   padding: 14px 18px;
   border-left: 3px solid var(--accent);
   border-radius: 8px;
   font-size: 1em;
-  background-color: var(--highlight-dark);
-  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted-dark);
   transition: all 0.4s ease;
+}
+
+body.light #motivation {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-muted-light);
 }
 
 /* 📝 Text Area */
@@ -133,33 +147,31 @@ textarea {
   height: 60vh;
   border: none;
   outline: none;
-  margin-top: 18px;
-  font-size: 15px;
+  margin-top: 20px;
+  font-size: clamp(14px, 1.2vw, 16px);
   font-family: var(--font-mono);
-  padding: 16px;
+  padding: 18px;
   border-radius: 12px;
-  background-color: rgba(30, 30, 36, 0.55);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  resize: vertical;
+  background-color: rgba(40, 40, 48, 0.6);
   color: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  resize: vertical;
   transition: background 0.4s, box-shadow 0.4s;
-  line-height: 1.5;
-  caret-color: var(--accent);
-}
-textarea:focus {
-  box-shadow: inset 0 0 0 2px var(--accent);
-  background-color: rgba(40, 40, 46, 0.6);
 }
 
-/* 💾 Info & Footer */
+textarea:focus {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* 📄 Info text */
 .info {
   font-size: 0.85em;
   text-align: right;
-  margin-top: 8px;
-  opacity: 0.75;
-  color: #b5bac5;
+  margin-top: 10px;
+  opacity: 0.7;
 }
 
+/* 🧭 Footer */
 footer {
   margin-top: 24px;
   font-size: 0.85em;
@@ -169,12 +181,14 @@ footer {
 footer a {
   color: var(--accent);
   text-decoration: none;
+  transition: color 0.2s;
 }
 footer a:hover {
   text-decoration: underline;
+  color: var(--accent-hover);
 }
 
-/* ✨ Animation */
+/* ✨ Animations */
 .fade-in {
   animation: fadeIn 0.6s ease-in-out;
 }
@@ -188,69 +202,19 @@ body.light {
   background: var(--bg-light);
   color: var(--text-light);
 }
+
 body.light .app {
   background: var(--glass-light);
   border-color: var(--border-light);
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
-body.light .controls {
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(0, 0, 0, 0.05);
-}
-body.light #motivation {
-  background-color: var(--highlight-light);
-}
+
 body.light textarea {
-  background-color: rgba(255, 255, 255, 0.85);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-  color: #1e1e1e;
-}
-body.light textarea:focus {
-  box-shadow: inset 0 0 0 2px var(--accent);
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
-/* 📱 Responsive Fixes */
-@media (max-width: 1024px) {
-  .app { padding: 26px 28px 36px; }
-}
-
-@media (max-width: 768px) {
-  header h1 { font-size: 1.4em; }
-  .controls { top: 10px; right: 12px; }
-  textarea { height: 55vh; font-size: 14px; }
-}
-
-@media (max-width: 480px) {
-  .app {
-    width: 94%;
-    margin: 70px auto 30px;
-    padding: 20px 18px 28px;
-  }
-  header h1 {
-    font-size: 1.25em;
-    text-align: center;
-    width: 100%;
-  }
-  #motivation {
-    font-size: 0.9em;
-    padding: 10px 12px;
-  }
-  .controls {
-    bottom: 12px;
-    top: auto;
-    right: 50%;
-    transform: translateX(50%);
-    padding: 6px 10px;
-    border-radius: 14px;
-  }
-  textarea {
-    height: 50vh;
-    font-size: 14px;
-    padding: 14px;
-  }
-  .info, footer {
-    font-size: 0.8em;
-    text-align: center;
-  }
+body.light header h1 {
+  color: var(--accent-hover);
+  text-shadow: none;
 }
