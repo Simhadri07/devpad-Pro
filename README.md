@@ -82,6 +82,10 @@ const name = "Simhadri"; // Change this to your name
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
+## 🤖 AI Assistance
+
+Some parts of **DevPad Pro** — including UI design suggestions, motivational quotes, and README content — were assisted by AI. This helped streamline development, improve UX, and craft meaningful documentation.
+
 ---
 
 **Enjoy with DevPad Pro!** 🚀
