@@ -1,220 +1,205 @@
-/* 🌈 DevPad Pro — macOS / Notion Aesthetic with Adaptive Design */
-:root {
-  /* Gradients */
-  --bg-light: linear-gradient(145deg, #fdfdfd, #e7edf6);
-  --bg-dark: linear-gradient(145deg, #0d0f15, #1b1d25);
+/* 🌈 DevPad Pro — macOS x Notion Hybrid Edition */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
-  /* Glass surfaces */
+:root {
+  /* Backgrounds */
+  --bg-dark: linear-gradient(160deg, #0d1117, #1c1f27);
+  --bg-light: linear-gradient(160deg, #f9fafc, #e7edf5);
+
+  /* Glass layers */
+  --glass-dark: rgba(25, 25, 30, 0.6);
   --glass-light: rgba(255, 255, 255, 0.7);
-  --glass-dark: rgba(30, 30, 35, 0.65);
 
   /* Borders */
-  --border-light: rgba(0, 0, 0, 0.08);
   --border-dark: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(0, 0, 0, 0.08);
 
-  /* Accent & highlight colors */
+  /* Accents */
   --accent: #007aff;
-  --accent-hover: #0064e0;
+  --accent-hover: #005de8;
   --accent-glow: rgba(0, 122, 255, 0.35);
 
   /* Text */
-  --text-light: #121317;
-  --text-dark: #e8ebf0;
-  --text-muted-light: #4a4c54;
-  --text-muted-dark: #b3b6bf;
+  --text-dark: #e9ecf2;
+  --text-light: #1c1d21;
+  --text-muted-dark: #b2b5be;
+  --text-muted-light: #4a4b51;
 
   /* Fonts */
   --font-sans: 'Inter', 'SF Pro Display', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* 🌙 Base styles */
+/* Base */
 body {
   margin: 0;
   font-family: var(--font-sans);
   background: var(--bg-dark);
   color: var(--text-dark);
-  transition: background 0.4s ease, color 0.4s ease;
-  line-height: 1.5;
+  transition: all 0.4s ease;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
-  padding: 0 16px;
+  padding-top: 80px;
 }
 
-/* 🪟 App Container */
-.app {
-  max-width: 920px;
-  margin: 80px auto 60px;
-  background: var(--glass-dark);
-  border: 1px solid var(--border-dark);
-  border-radius: 22px;
-  backdrop-filter: blur(20px) saturate(160%);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
-  padding: 36px 44px 50px;
-  transition: all 0.4s ease;
-}
-
-/* 📱 Responsive layout */
-@media (max-width: 768px) {
-  .app {
-    margin: 40px 0;
-    padding: 24px 20px 32px;
-    border-radius: 16px;
-  }
-}
-
-/* 🧭 Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-header h1 {
-  font-weight: 600;
-  font-size: clamp(1.3em, 2vw, 1.6em);
-  letter-spacing: -0.3px;
-  color: var(--accent);
-  text-shadow: 0 0 10px var(--accent-glow);
-}
-
-/* 🎛️ Control buttons */
+/* Floating Controls */
 .controls {
   position: fixed;
-  top: 18px;
-  right: 24px;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
+  align-items: center;
   gap: 10px;
   background: rgba(25, 25, 30, 0.5);
-  backdrop-filter: blur(12px);
-  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px) saturate(160%);
+  border-radius: 40px;
   padding: 6px 12px;
-  z-index: 10;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  z-index: 999;
 }
 
 button {
   border: none;
-  border-radius: 8px;
-  padding: 6px 10px;
   background: var(--accent);
   color: #fff;
-  font-size: 0.9em;
+  font-size: 1rem;
+  border-radius: 12px;
+  padding: 8px 10px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.15s, box-shadow 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px var(--accent-glow);
 }
-button:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 3px 10px var(--accent-glow);
-}
-button:active {
-  transform: scale(0.96);
+button:hover { background: var(--accent-hover); transform: translateY(-2px); }
+button:active { transform: scale(0.96); }
+
+/* App Container */
+.app {
+  max-width: 900px;
+  margin: 0 auto 60px;
+  background: var(--glass-dark);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-dark);
+  border-radius: 18px;
+  padding: 28px 36px 40px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  transition: background 0.4s, border 0.4s;
 }
 
-/* 💬 Greeting & Motivation */
+/* Header */
+header h1 {
+  font-weight: 600;
+  font-size: 1.7em;
+  letter-spacing: -0.3px;
+  text-align: center;
+  margin: 0;
+}
+
+/* Greeting and Motivation */
 #greeting {
-  font-size: 1.25em;
+  font-size: 1.2em;
   font-weight: 500;
-  margin-top: 8px;
-  color: var(--text-dark);
+  margin-top: 10px;
+  text-align: center;
 }
-
 #motivation {
-  margin-top: 14px;
+  margin: 16px auto;
   padding: 14px 18px;
-  border-left: 3px solid var(--accent);
+  border-left: 4px solid var(--accent);
   border-radius: 8px;
-  font-size: 1em;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-muted-dark);
+  font-size: 1rem;
+  background-color: rgba(255,255,255,0.1);
+  backdrop-filter: blur(5px);
   transition: all 0.4s ease;
+  max-width: 90%;
+  text-align: center;
 }
 
-body.light #motivation {
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--text-muted-light);
-}
-
-/* 📝 Text Area */
+/* Text Area */
 textarea {
   width: 100%;
   height: 60vh;
   border: none;
   outline: none;
-  margin-top: 20px;
-  font-size: clamp(14px, 1.2vw, 16px);
+  margin-top: 18px;
+  font-size: 15px;
   font-family: var(--font-mono);
-  padding: 18px;
-  border-radius: 12px;
-  background-color: rgba(40, 40, 48, 0.6);
-  color: inherit;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  padding: 16px;
+  border-radius: 10px;
+  background-color: rgba(30,30,36,0.5);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
   resize: vertical;
+  color: inherit;
   transition: background 0.4s, box-shadow 0.4s;
 }
 
-textarea:focus {
-  box-shadow: 0 0 0 2px var(--accent);
-}
-
-/* 📄 Info text */
 .info {
   font-size: 0.85em;
   text-align: right;
-  margin-top: 10px;
+  margin-top: 8px;
   opacity: 0.7;
 }
 
-/* 🧭 Footer */
 footer {
-  margin-top: 24px;
+  margin-top: 20px;
   font-size: 0.85em;
   text-align: center;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 footer a {
   color: var(--accent);
   text-decoration: none;
-  transition: color 0.2s;
 }
 footer a:hover {
   text-decoration: underline;
-  color: var(--accent-hover);
 }
 
-/* ✨ Animations */
+/* Fade Animation */
 .fade-in {
   animation: fadeIn 0.6s ease-in-out;
 }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {opacity: 0; transform: translateY(5px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
-/* 🌞 Light Mode */
+/* Light Mode */
 body.light {
   background: var(--bg-light);
   color: var(--text-light);
 }
+body.light .app { background: var(--glass-light); border-color: var(--border-light); }
+body.light textarea { background-color: rgba(255,255,255,0.65); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); }
+body.light .controls { background: rgba(255,255,255,0.5); border-color: rgba(0,0,0,0.05); }
 
-body.light .app {
-  background: var(--glass-light);
-  border-color: var(--border-light);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+/* Responsive Layouts */
+@media (max-width: 768px) {
+  .app {
+    padding: 20px;
+    margin: 0 10px 40px;
+  }
+  header h1 {
+    font-size: 1.4em;
+  }
+  textarea {
+    height: 55vh;
+    font-size: 14px;
+  }
 }
 
-body.light textarea {
-  background-color: rgba(255, 255, 255, 0.75);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
-}
-
-body.light header h1 {
-  color: var(--accent-hover);
-  text-shadow: none;
+@media (max-width: 480px) {
+  .controls {
+    top: 10px;
+    gap: 6px;
+    padding: 5px 8px;
+  }
+  button {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+  #motivation {
+    font-size: 0.9rem;
+    max-width: 95%;
+  }
 }
