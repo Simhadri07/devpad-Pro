@@ -1,205 +1,109 @@
-/* 🌈 DevPad Pro — macOS x Notion Hybrid Edition */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.4s ease;
+  padding: 20px;
+}
 
 :root {
-  /* Backgrounds */
-  --bg-dark: linear-gradient(160deg, #0d1117, #1c1f27);
-  --bg-light: linear-gradient(160deg, #f9fafc, #e7edf5);
-
-  /* Glass layers */
-  --glass-dark: rgba(25, 25, 30, 0.6);
-  --glass-light: rgba(255, 255, 255, 0.7);
-
-  /* Borders */
-  --border-dark: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(0, 0, 0, 0.08);
-
-  /* Accents */
-  --accent: #007aff;
-  --accent-hover: #005de8;
-  --accent-glow: rgba(0, 122, 255, 0.35);
-
-  /* Text */
-  --text-dark: #e9ecf2;
-  --text-light: #1c1d21;
-  --text-muted-dark: #b2b5be;
-  --text-muted-light: #4a4b51;
-
-  /* Fonts */
-  --font-sans: 'Inter', 'SF Pro Display', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --bg: linear-gradient(145deg, #f8fafc, #e4e6eb);
+  --card-bg: #ffffff;
+  --text: #222;
+  --textarea-bg: #f3f4f6;
+  --accent: #2563eb;
 }
 
-/* Base */
-body {
-  margin: 0;
-  font-family: var(--font-sans);
-  background: var(--bg-dark);
-  color: var(--text-dark);
-  transition: all 0.4s ease;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  padding-top: 80px;
+[data-theme="dark"] {
+  --bg: linear-gradient(145deg, #0f172a, #1e293b);
+  --card-bg: #1e293b;
+  --text: #e2e8f0;
+  --textarea-bg: #334155;
+  --accent: #38bdf8;
 }
 
-/* Floating Controls */
-.controls {
-  position: fixed;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(25, 25, 30, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px) saturate(160%);
-  border-radius: 40px;
-  padding: 6px 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  z-index: 999;
-}
-
-button {
-  border: none;
-  background: var(--accent);
-  color: #fff;
-  font-size: 1rem;
-  border-radius: 12px;
-  padding: 8px 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 12px var(--accent-glow);
-}
-button:hover { background: var(--accent-hover); transform: translateY(-2px); }
-button:active { transform: scale(0.96); }
-
-/* App Container */
-.app {
-  max-width: 900px;
-  margin: 0 auto 60px;
-  background: var(--glass-dark);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--border-dark);
-  border-radius: 18px;
-  padding: 28px 36px 40px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-  transition: background 0.4s, border 0.4s;
-}
-
-/* Header */
-header h1 {
-  font-weight: 600;
-  font-size: 1.7em;
-  letter-spacing: -0.3px;
+/* Layout */
+.container {
   text-align: center;
-  margin: 0;
-}
-
-/* Greeting and Motivation */
-#greeting {
-  font-size: 1.2em;
-  font-weight: 500;
-  margin-top: 10px;
-  text-align: center;
-}
-#motivation {
-  margin: 16px auto;
-  padding: 14px 18px;
-  border-left: 4px solid var(--accent);
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: rgba(255,255,255,0.1);
-  backdrop-filter: blur(5px);
-  transition: all 0.4s ease;
-  max-width: 90%;
-  text-align: center;
-}
-
-/* Text Area */
-textarea {
   width: 100%;
-  height: 60vh;
+  max-width: 420px;
+}
+
+.theme-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.theme-btn {
+  background: var(--card-bg);
   border: none;
-  outline: none;
-  margin-top: 18px;
-  font-size: 15px;
-  font-family: var(--font-mono);
-  padding: 16px;
-  border-radius: 10px;
-  background-color: rgba(30,30,36,0.5);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-  resize: vertical;
-  color: inherit;
-  transition: background 0.4s, box-shadow 0.4s;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-.info {
-  font-size: 0.85em;
-  text-align: right;
-  margin-top: 8px;
-  opacity: 0.7;
+.theme-btn:hover {
+  transform: scale(1.1);
 }
 
-footer {
-  margin-top: 20px;
-  font-size: 0.85em;
+/* Card */
+.card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  padding: 25px 20px;
   text-align: center;
-  opacity: 0.6;
 }
-footer a {
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
   color: var(--accent);
-  text-decoration: none;
-}
-footer a:hover {
-  text-decoration: underline;
 }
 
-/* Fade Animation */
-.fade-in {
-  animation: fadeIn 0.6s ease-in-out;
-}
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(5px);}
-  to {opacity: 1; transform: translateY(0);}
+.greeting {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
 }
 
-/* Light Mode */
-body.light {
-  background: var(--bg-light);
-  color: var(--text-light);
-}
-body.light .app { background: var(--glass-light); border-color: var(--border-light); }
-body.light textarea { background-color: rgba(255,255,255,0.65); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); }
-body.light .controls { background: rgba(255,255,255,0.5); border-color: rgba(0,0,0,0.05); }
-
-/* Responsive Layouts */
-@media (max-width: 768px) {
-  .app {
-    padding: 20px;
-    margin: 0 10px 40px;
-  }
-  header h1 {
-    font-size: 1.4em;
-  }
-  textarea {
-    height: 55vh;
-    font-size: 14px;
-  }
+.quote {
+  font-style: italic;
+  background: var(--textarea-bg);
+  padding: 8px 10px;
+  border-radius: 10px;
+  color: var(--text);
+  margin-bottom: 16px;
+  border-left: 4px solid var(--accent);
 }
 
-@media (max-width: 480px) {
-  .controls {
-    top: 10px;
-    gap: 6px;
-    padding: 5px 8px;
-  }
-  button {
-    font-size: 0.9rem;
-    padding: 6px 8px;
-  }
-  #motivation {
-    font-size: 0.9rem;
-    max-width: 95%;
-  }
+.note-box {
+  width: 100%;
+  min-height: 180px;
+  background: var(--textarea-bg);
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  resize: none;
+  font-size: 0.95rem;
+  color: var(--text);
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
